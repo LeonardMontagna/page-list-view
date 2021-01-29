@@ -10,9 +10,10 @@ PagesModel::PagesModel(QObject *parent) : QAbstractListModel(parent)
 int PagesModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    const auto v       = m_itemsModel->rowCount() / 9;
-    const auto perfect = (m_itemsModel->rowCount() % 9) == 0;
-    return perfect ? v : v + 1;
+    return m_itemsModel->rowCount();
+    //    const auto v       = m_itemsModel->rowCount() / 9;
+    //    const auto perfect = (m_itemsModel->rowCount() % 9) == 0;
+    //    return perfect ? v : v + 1;
 }
 
 QVariant PagesModel::data(const QModelIndex &index, int role) const
@@ -49,6 +50,6 @@ void PagesModel::setTotalItems(int number)
 void PagesModel::createModelForPage()
 {
     m_itemsForPage.setSourceModel(m_itemsModel.get());
-    m_itemsForPage.setPage(m_currentPage);
+    //    m_itemsForPage.setPage(m_currentPage);
     emit itemsForPageChanged();
 }

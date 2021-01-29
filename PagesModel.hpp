@@ -23,7 +23,7 @@ class PagesModel : public QAbstractListModel
                   int role = Qt::DisplayRole) const override;
 
     int currentPage() const noexcept;
-    void setCurrentPage(int value);
+    Q_INVOKABLE void setCurrentPage(int value);
 
     QSortFilterProxyModel *itemsForPage();
 

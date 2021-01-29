@@ -61,15 +61,15 @@ Window {
         anchors.bottom: list.top
         horizontalAlignment: Text.AlignHCenter
         color: "white"
-        text: (list.currentIndex + 1) + " / " + pagesModel.rowCount()
+        text: (pagesModel.currentPage) + " / " + pagesModel.rowCount()
     }
 
     ListView {
         id: list
 
-        onCurrentIndexChanged: pagesModel.currentPage = currentIndex
+        //        onCurrentIndexChanged: pagesModel.currentPage = currentIndex
         width: parent.width
-        height: width
+        height: 100
         cacheBuffer: 0
         snapMode: ListView.SnapToItem
         anchors {
@@ -88,10 +88,16 @@ Window {
             Repeater {
                 model: pagesModel.itemsForPage
 
-                Item {
+                Button {
+                    id: chamberButton
                     width: list.width / chambers.currentText
-                    height: width
+                    height: 100
 
+                    onClicked: {
+                        pagesModel.setCurrentPage(buttonText.text)
+
+//                        pagesModel.setTotalItems(chambers.currentText)
+                    }
                     Rectangle {
                         width: parent.width * .95
                         height: parent.height * .95
@@ -101,6 +107,7 @@ Window {
                                        Math.random(), 1)
 
                         Text {
+                            id: buttonText
                             anchors.centerIn: parent
                             width: parent.width * .5
                             height: parent.height * .5

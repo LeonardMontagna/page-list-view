@@ -14,6 +14,9 @@ int main(int argc, char *argv[])
     pagesModel.setTotalItems(3);
 
     engine.rootContext()->setContextProperty("pagesModel", &pagesModel);
+    ItemsModel itemsModel(3);
+
+    engine.rootContext()->setContextProperty("itemsModel", &itemsModel);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app,
