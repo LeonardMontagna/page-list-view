@@ -1,5 +1,6 @@
 #include "PagesModel.hpp"
 
+#include <QDebug>
 PagesModel::PagesModel(QObject *parent) : QAbstractListModel(parent)
 {
     connect(this, &PagesModel::currentPageChanged, this,
@@ -29,6 +30,7 @@ int PagesModel::currentPage() const noexcept
 void PagesModel::setCurrentPage(int value)
 {
     m_currentPage = value;
+    qDebug() << "test0";
     emit currentPageChanged();
 }
 
@@ -39,7 +41,9 @@ QSortFilterProxyModel *PagesModel::itemsForPage()
 
 void PagesModel::setTotalItems(int number)
 {
-    m_itemsModel = std::make_unique<ItemsModel>(number);
+    m_number     = number;
+    m_itemsModel = std::make_unique<ItemsModel>(m_number);
+    emit currentPageChanged();
 }
 
 void PagesModel::createModelForPage()

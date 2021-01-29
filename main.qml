@@ -11,6 +11,48 @@ Window {
     Rectangle {
         anchors.fill: parent
         color: "black"
+
+        //        Button {
+        //            text: "Add\nItem"
+        //            anchors {
+        //                top: parent.top
+        //                left: parent.left
+        //                topMargin: 50
+        //                leftMargin: 50
+        //            }
+        //            height: 100
+        //            width: 100
+        //            onClicked: pagesModel.setTotalItems(val)
+        //        }
+    }
+
+    ComboBox {
+        id: chambers
+        editable: true
+        anchors {
+            top: parent.top
+            left: parent.left
+            topMargin: 50
+            leftMargin: 50
+        }
+
+        model: ListModel {
+            id: model
+
+            ListElement {
+
+                text: "3"
+            }
+            ListElement {
+                text: "4"
+            }
+            ListElement {
+                text: "5"
+            }
+        }
+        onActivated: {
+            pagesModel.setTotalItems(chambers.currentText)
+        }
     }
 
     Text {
@@ -41,12 +83,13 @@ Window {
         highlightRangeMode: ListView.StrictlyEnforceRange
         spacing: 10
         delegate: Grid {
-            rows: 3
-            columns: 3
+            rows: 1
+            columns: 5
             Repeater {
                 model: pagesModel.itemsForPage
+
                 Item {
-                    width: list.width / 3
+                    width: list.width / chambers.currentText
                     height: width
 
                     Rectangle {

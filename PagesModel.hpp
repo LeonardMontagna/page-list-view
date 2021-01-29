@@ -27,7 +27,7 @@ class PagesModel : public QAbstractListModel
 
     QSortFilterProxyModel *itemsForPage();
 
-    void setTotalItems(int number);
+    Q_INVOKABLE void setTotalItems(int number);
 
   signals:
     void currentPageChanged();
@@ -37,6 +37,7 @@ class PagesModel : public QAbstractListModel
     std::unique_ptr<ItemsModel> m_itemsModel;
     int m_currentPage{ 0 };
     FilterForPage m_itemsForPage;
+    int m_number{ 0 };
 
     void createModelForPage();
 };
