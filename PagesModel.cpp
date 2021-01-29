@@ -31,7 +31,6 @@ int PagesModel::currentPage() const noexcept
 void PagesModel::setCurrentPage(int value)
 {
     m_currentPage = value;
-    qDebug() << "test0";
     emit currentPageChanged();
 }
 

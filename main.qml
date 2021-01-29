@@ -24,6 +24,17 @@ Window {
         //            width: 100
         //            onClicked: pagesModel.setTotalItems(val)
         //        }
+        Rectangle {
+            anchors {
+                top: parent.top
+                left: parent.left
+                topMargin: 100
+                leftMargin: 50
+            }
+            color: "red"
+            height: 200
+            width: parent.width - 100
+        }
     }
 
     ComboBox {
@@ -95,8 +106,6 @@ Window {
 
                     onClicked: {
                         pagesModel.setCurrentPage(buttonText.text)
-
-//                        pagesModel.setTotalItems(chambers.currentText)
                     }
                     Rectangle {
                         width: parent.width * .95
